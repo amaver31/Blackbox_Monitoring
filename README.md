@@ -1,10 +1,10 @@
-Step-by-Step Monitoring Setup of Private URL using Blackbox Exporter
+# Step-by-Step Monitoring Setup of Private URL using Blackbox Exporter
 Step 1: Create Your Project Directory
-Open your terminal and run:
+Open your terminal and run:			
 
 mkdir monitoring-setup
-cd monitoring-setup
-Step 2: Create docker-compose.yml
+cd monitoring-setup 
+# Step 2: Create docker-compose.yml
 In the 'monitoring-setup' directory, create a file named 'docker-compose.yml' with the following content:
 
 version: '3.8'
@@ -52,7 +52,7 @@ services:
 networks:
   monitor-net:
     driver: bridge
-Step 3: Configure Blackbox Exporter
+# Step 3: Configure Blackbox Exporter
 Create a file named 'blackbox.yml' in the same directory with this content:
 
 modules:
@@ -62,7 +62,7 @@ modules:
     http:
       valid_http_versions: ["HTTP/1.1", "HTTP/2"]
       valid_status_codes: [200]
-Step 4: Configure Prometheus
+# Step 4: Configure Prometheus
 Create a file named 'prometheus.yml' with the following content:
 
 global:
@@ -86,7 +86,7 @@ scrape_configs:
       target_label: instance
     - target_label: __address__
       replacement: blackbox:9115
-Step 5: Launch Services
+# Step 5: Launch Services
 Run the following command in the project directory:
 
 docker compose up -d
@@ -96,7 +96,7 @@ This starts:
 - Blackbox Exporter on 9115
 - Prometheus on 9090
 - Grafana on 3000
-Step 6: Verify Setup
+# Step 6: Verify Setup
 - Open Prometheus UI: http://localhost:9090/targets
   → Check if 'prometheus' and 'blackbox' jobs are UP
 
@@ -104,7 +104,7 @@ Step 6: Verify Setup
   → Login: admin/admin, then change password
   → Add Prometheus as a data source (URL: http://prometheus:9090)
   → Import Dashboard (e.g., ID: 7587) to view Blackbox metrics
-Step 7: Monitor Custom URLs
+# Step 7: Monitor Custom URLs
 To monitor a private URL like http://abc.example.com:8080, which is a local host url, add this to 'prometheus.yml':
 
 - job_name: 'blackbox-private'
@@ -121,7 +121,7 @@ Then reload Prometheus:
 docker exec prometheus kill -HUP 1
 
 → Check Prometheus Targets again to confirm status
-Full Summary
+# Full Summary
 Component	Port	Purpose
 nginx	8080	HTTP endpoint to monitor
 blackbox-exporter	9115	Probes endpoint
