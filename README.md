@@ -122,9 +122,8 @@ docker exec prometheus kill -HUP 1
 
 → Check Prometheus Targets again to confirm status
 # Full Summary
-- Component     	 Port        	Purpose
-- nginx	             8080      	HTTP endpoint to monitor
-- blackbox-exporter	 9115	    Probes endpoint
-- prometheus	     9090	    Scrapes metrics
-- grafana	         3000	    Displays metrics/dashboards
+- nginx-8080-HTTP endpoint to monitor
+- blackbox_exporter-9115-Probes endpoint
+- prometheus-9090-Scrapes metrics
+- grafana-3000-Displays metrics/dashboards
 
