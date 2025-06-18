@@ -1,11 +1,11 @@
 # Step-by-Step Monitoring Setup of Private URL using Blackbox Exporter
 # Step 1: Create Your Project Directory
-Open your terminal and run:			
+- Open your terminal and run:			
 
-mkdir monitoring-setup
+- mkdir monitoring-setup
 cd monitoring-setup 
 # Step 2: Create docker-compose.yml
-In the 'monitoring-setup' directory, create a file named 'docker-compose.yml' with the following content:
+- In the 'monitoring-setup' directory, create a file named 'docker-compose.yml' with the following content:
 
 version: '3.8'
 services:
@@ -53,7 +53,7 @@ networks:
   monitor-net:
     driver: bridge
 # Step 3: Configure Blackbox Exporter
-Create a file named 'blackbox.yml' in the same directory with this content:
+- Create a file named 'blackbox.yml' in the same directory with this content:
 
 modules:
   http_2xx:
@@ -63,7 +63,7 @@ modules:
       valid_http_versions: ["HTTP/1.1", "HTTP/2"]
       valid_status_codes: [200]
 # Step 4: Configure Prometheus
-Create a file named 'prometheus.yml' with the following content:
+- Create a file named 'prometheus.yml' with the following content:
 
 global:
   scrape_interval: 15s
@@ -87,11 +87,11 @@ scrape_configs:
     - target_label: __address__
       replacement: blackbox:9115
 # Step 5: Launch Services
-Run the following command in the project directory:
+- Run the following command in the project directory:
 
 docker compose up -d
 
-This starts:
+- This starts:
 - nginx on port 8080
 - Blackbox Exporter on 9115
 - Prometheus on 9090
@@ -105,7 +105,7 @@ This starts:
   → Add Prometheus as a data source (URL: http://prometheus:9090)
   → Import Dashboard (e.g., ID: 7587) to view Blackbox metrics
 # Step 7: Monitor Custom URLs
-To monitor a private URL like http://abc.example.com:8080, which is a local host url, add this to 'prometheus.yml':
+- To monitor a private URL like http://abc.example.com:8080, which is a local host url, add this to 'prometheus.yml':
 
 - job_name: 'blackbox-private'
   metrics_path: /probe
