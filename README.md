@@ -1,5 +1,5 @@
 # Step-by-Step Monitoring Setup of Private URL using Blackbox Exporter
-Step 1: Create Your Project Directory
+# Step 1: Create Your Project Directory
 Open your terminal and run:			
 
 mkdir monitoring-setup
